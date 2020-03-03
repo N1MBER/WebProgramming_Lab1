@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru-RU" >
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+    <title>Lab1 Web-Programing</title>
+    <style>
+
+        body {
+            background-color: white ;
+
+        }
+
+        /*#result{*/
+        /*    font-size: 10pt;*/
+        /*    font-weight: bold;*/
+        /*    margin-left: 100px;*/
+        /*    font-family: Arial ;*/
+        /*    border-style: double;*/
+        /*    border-color: darkgoldenrod;*/
+        /*    border: darkgoldenrod;*/
+        /*}*/
+        img{
+            background-color: white;
+        }
+        tr,td {
+            font-size: 10pt;
+            font-weight: bold;
+            margin-left: 100px;
+            font-family: Arial ;
+            border: darkgray;
+            /*border-radius: 100px;*/
+            background-color: antiquewhite;
+            border-style: double;
+            border-color: darkgoldenrod;
+        }
+        /*form{*/
+        /*    font-size: 10pt;*/
+        /*    font-weight: bold;*/
+        /*    margin-left: 100px;*/
+        /*    font-family: Arial ;*/
+        /*    border: darkgray;*/
+        /*    border-radius: 100px;*/
+        /*    background-color: antiquewhite;*/
+        /*    border-style: double;*/
+        /*    border-color: darkgoldenrod;*/
+        /*}*/
+        p.content:first-line{
+            color: black;
+            font-weight: bold;
+            font-family: Arial;
+            font-size: 10pt;
+        }
+        label:before{
+            display: inline-block;
+        }
+        TABLE{
+            color: black;
+            margin-left: 10px;
+        }
+        header#headOfProject{
+            border-radius: 100px;
+            background-color: peachpuff;
+            font-family: monospace;
+            font-size: 10pt;
+            border-style: double;
+            border-width: 2px;
+            border-color: coral;
+            text-align: center;
+            font-weight: bold;
+        }
+        #suputton{
+            border: black;
+            border-style: double;
+            border-radius: 10px;
+            border-width: 3px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+<body>
+<table id="enterPlace">
+    <tr>
+        <header id="headOfProject">
+        <h1>Лабораторная работа №1 по Веб-программированию</h1>
+            <br>
+            <h2 id="head">Проверка попадания точки в заданную область.</h2>
+            <h2 id="name">Колесников Максим Р3210<br>
+                Вариант: 210005
+            </h2>
+        </header>
+    </tr>
+</table>
+<!--    <div id="result"></div>-->
+<table >
+    <tr>
+    </tr>
+    <tr>
+        <td align="center" width="30%" id="image">
+            <img class="area" title="Areas" width="80%" src="RadioPicture.jpg"/>
+            <br>
+            <p class="content">Изображение допустимой области</p>
+        </td>
+        <td align="center" width="70%">
+            <form id="form"  name="form" class="form" method="get">
+                <h2 id="enterx">
+                    Выберите X:
+                </h2>
+                <label for="radiox-4">-2</label><input id="radiox-4" name="radiox" type="radio" value="-2" />
+                <label for="radiox-3">-1.5</label><input id="radiox-3" name="radiox" type="radio" value="-1.5" />
+                <label for="radiox-3">-1</label><input id="radiox-2" name="radiox" type="radio" value="-1" />
+                <label for="radiox-1">-0.5</label><input id="radiox-1" name="radiox" type="radio" value="-0.5"/>
+                <label for="radiox0">0</label><input id="radiox0" name="radiox" type="radio" value="0"/>
+                <label for="radiox1">0.5</label><input id="radiox1" name="radiox" type="radio" value="0.5" />
+                <label for="radiox2">1</label><input id="radiox2" name="radiox" type="radio" value="1"/>
+                <label for="radiox3">1.5</label><input id="radiox3" name="radiox" type="radio" value="1.5"/>
+                <label for="radiox4">2</label><input id="radiox4" name="radiox" type="radio" value="2"/>
+                <p id="messagex" ><br></p>
+    
+                 <h2 id="entery">
+                     Введите Y в диапозоне (-5;3)
+                 </h2>
+                <input name="texty" id="texty" type="text" maxlength="8" />
+                <p id="messagey"><br></p>
+    
+                 <h2 id="enterr">
+                     Выберите R:
+                 </h2>
+                <label for="r1">1</label><input id="r1" name="r1" type="checkbox" value="1" />
+                <label for="r2">1.5</label><input id="r2" name="r2" type="checkbox" value="1.5" />
+                <label for="r3">2</label><input id="r3" name="r3" type="checkbox" value="2" />
+                <label for="r4">2.5</label><input id="r4" name="r4" type="checkbox" value="2.5" />
+                <label for="r5">3</label><input id="r5" name="r5" type="checkbox" value="3" />
+                <p id="messager"><br></p>
+                <p id="buttons">
+                <button id="suputton" name="suputton" type="submit">Отправить...</button>
+                </p>
+            </form>
+        </td>
+    </tr>
+</table>
+<br>
+<br>
+<table id="result"></table>
+<script type="text/javascript">
+
+    function check(){
+        document.getElementById("messagex").innerHTML = "<br>";
+        document.getElementById("messagey").innerHTML = "<br>";
+        document.getElementById("messager").innerHTML = "<br>";
+        let choose = false;
+        for(let i=-4 ;i<=4; i++){
+            if (document.getElementById("radiox" + i).checked){
+                choose = true;
+                break;
+            }
+        }
+
+        if (!choose){
+            document.getElementById("messagex").innerHTML = "Выбирите х"
+        }
+        let countY = document.forms['form'].elements['texty'].value.trim();
+        if (countY === ""){
+            document.getElementById("messagey").innerHTML = "Введите Y";
+            choose = false;
+        }else {
+            if (!/^(-?\d+)([.,]\d+)?$/.test(countY)) {
+                document.getElementById("messagey").innerHTML = "Некорректный ввод";
+                choose = false
+            } else if (countY <= -5 | countY >= 3) {
+                document.getElementById("messagey").innerHTML = "Y вне диапозона";
+                choose = false;
+                console.log(choose);
+            }
+        }
+
+        let count = 0;
+        for (let j = 1; j<=5 ; j++){
+            if (document.getElementById("r"+j).checked){
+                count++;
+            }
+        }
+        if (count == 0) {
+            document.getElementById("messager").innerHTML = "Не выбран R";
+            choose = false;
+        }
+        return choose;
+    }
+
+
+    $('#form').submit(function () {
+        if(check()) {
+            $.get(
+                "/~s263830/PIP/Lab1/get.php",
+                $('#form').serialize(),
+
+                function (msg) {
+                    $('#result').html(msg);
+                }
+                // document.getElementById("form").reset();
+            )
+            document.getElementById("form").reset();
+        }
+        return false;
+    })
+</script>
+</body>
+</html>
